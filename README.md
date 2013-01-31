@@ -3,7 +3,7 @@ dgame
 
 ## Introduction ##
 
-dgame is a game engine for Dart.
+A game engine library for Dart.
 
 ## Getting Started ##
 
