@@ -12,7 +12,8 @@ dgame is a game engine for Dart.
 
 ```yaml
 dependencies:
-  dgame: any
+  dgame:
+  	git: https://github.com/ejsmith/dgame.git
 ```
 
 2\. Add the correct import for your project.
