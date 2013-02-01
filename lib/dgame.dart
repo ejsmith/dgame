@@ -65,7 +65,7 @@ class Game {
   }
   
   void removeEntity(String id) {
-    entities.where((e) => e.id == id).forEach((e) => e.removeFromGame());
+    entities.where((e) => e.id == id).toList().forEach((e) => e.removeFromGame());
   }
   
   void enableEntitiesByGroup(String groupId) {
@@ -77,11 +77,11 @@ class Game {
   }
   
   void removeEntitiesByGroup(String groupId) {
-    entities.where((e) => e.groupId == groupId).forEach((e) => e.removeFromGame());
+    entities.where((e) => e.groupId == groupId).toList().forEach((e) => e.removeFromGame());
   }
   
   void removeEntitiesByFilter(bool f(GameEntity entity)) {
-    entities.where((e) => f(e)).forEach((e) => e.removeFromGame());
+    entities.where((e) => f(e)).toList().forEach((e) => e.removeFromGame());
   }
   
   GameEntity getEntity(String id) {
@@ -91,7 +91,7 @@ class Game {
   void update() {
     num entitiesCount = entities.length;
     
-    for (GameEntity entity in entities.where((e) => !e._removeFromGame))
+    for (GameEntity entity in entities.where((e) => !e._removeFromGame).toList())
       entity.update();
     
     for (int i = entities.length - 1; i >= 0; --i) {
