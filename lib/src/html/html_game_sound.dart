@@ -36,7 +36,7 @@ class HtmlGameSound extends GameSound {
     audioCopy.id = "";
     document.body.nodes.add(audioCopy);
     
-    audioCopy.$dom_addEventListener('ended', (e) {
+    audioCopy.onEnded.listen((e) {
       if (Game.debugMode)
         print("removed");
       audioCopy.remove();

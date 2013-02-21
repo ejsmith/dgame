@@ -22,14 +22,14 @@ class AssetManager {
     
     for (final String path in _downloadQueue) {
       var el = new ImageElement();
-      el.on.load.add((event) {
+      el.onLoad.listen((event) {
         print('${el.src} is loaded');
         _successCount += 1;
         if (isDone()) {
             downloadCallback();
         }
       });
-      el.on.error.add((event) {
+      el.onError.listen((event) {
         _errorCount += 1;
         if (isDone()) {
             downloadCallback();

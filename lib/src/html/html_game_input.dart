@@ -10,34 +10,34 @@ class HtmlGameInput extends GameInput {
       return new Vector(x, y);
     }
     
-    document.on.click.add((e) {
+    document.onClick.listen((e) {
       click = getXandY(e);
     });
     
-    document.on.mouseMove.add((e) {
+    document.onMouseMove.listen((e) {
       mouse = getXandY(e);
     });
     
-    document.on.touchMove.add((TouchEvent e) {
+    document.onTouchMove.listen((TouchEvent e) {
       e.preventDefault();
       mouse = getXandY(e.touches[0]);
       return false;
     });
     
-    document.on.touchStart.add((e) {
+    document.onTouchStart.listen((e) {
       e.preventDefault();
       return false;
     });
     
-    document.on.keyDown.add((KeyboardEvent e) {
+    document.onKeyDown.listen((KeyboardEvent e) {
       keyCode = e.keyCode;
-    }, false);
-
-    document.on.mouseDown.add((e) {
+    });
+    
+    document.onMouseDown.listen((e) {
       mouseDown = true;
     });
     
-    document.on.mouseUp.add((e) {
+    document.onMouseUp.listen((e) {
       mouseDown = false;     
     });
     

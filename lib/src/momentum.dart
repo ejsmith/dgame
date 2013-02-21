@@ -8,7 +8,7 @@ class Momentum {
   num xMax;
   num yMax;
   
-  Momentum([num this.xVel = 0, num this.yVel = 0, num this.xAccel, num this.yAccel, num this.xMax, num this.yMax]);
+  Momentum({num this.xVel: 0, num this.yVel: 0, num this.xAccel, num this.yAccel, num this.xMax, num this.yMax});
   
   void update(num clockTick) {
     if (xAccel != null && xAccel != 0 && xVel.abs() < xMax)

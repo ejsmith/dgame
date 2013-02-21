@@ -9,7 +9,7 @@ class GameTimer {
   bool timeDecrease = false;
   
   num tick() {
-    num wallCurrent = new Date.now().millisecondsSinceEpoch;
+    num wallCurrent = new DateTime.now().millisecondsSinceEpoch;
     num wallDelta = (wallCurrent - wallLastTimestamp) / 1000;
     wallLastTimestamp = wallCurrent;
     num currentFps = 1 / wallDelta;
