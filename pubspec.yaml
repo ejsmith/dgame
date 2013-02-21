@@ -1,5 +1,5 @@
 name: dgame
-version: 0.1.0
+version: 0.1.1
 author: Eric J. Smith <eric@codesmithtools.com>
 description: A game engine library for Dart.
 homepage: https://github.com/ejsmith/dgame
