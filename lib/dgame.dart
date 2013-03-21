@@ -18,6 +18,7 @@ part "src/game_button.dart";
 
 class Game {
   List<GameEntity> entities;
+  List<GameSound> sounds;
   GameTimer timer;
   num clockTick;
   Rectangle rect;
@@ -38,6 +39,7 @@ class Game {
     renderer = new GameRenderer();
     loop = new GameLoop();
     entities = [];
+    sounds = [];
   }
   
   Game.withServices(GameSound this.sound, GameInput this.input, GameRenderer this.renderer, GameLoop this.loop) {
@@ -62,6 +64,15 @@ class Game {
   
   void addEntity(GameEntity entity) {
     entities.add(entity);
+  }
+  
+  void addSound(GameSound sound, String file, String id, num volume, bool looping) {
+    sounds.add(sound);
+    sound.play(file, id, volume, looping);
+  }
+  
+  void removeSound(String id) {
+    sounds.where((e) => e.Id == id).toList().forEach((e) => e.enabled = false);
   }
   
   void removeEntity(String id) {
