@@ -23,7 +23,6 @@ class Game {
   num clockTick;
   Rectangle rect;
   static bool debugMode = false;
-  GameSound sound;
   GameInput input;
   GameRenderer renderer;
   GameLoop loop;
@@ -34,7 +33,6 @@ class Game {
   
   Game(Rectangle this.rect) {
     timer = new GameTimer();
-    sound = new GameSound();
     input = new GameInput();
     renderer = new GameRenderer();
     loop = new GameLoop();
@@ -42,9 +40,10 @@ class Game {
     sounds = [];
   }
   
-  Game.withServices(GameSound this.sound, GameInput this.input, GameRenderer this.renderer, GameLoop this.loop) {
+  Game.withServices(GameInput this.input, GameRenderer this.renderer, GameLoop this.loop) {
     timer = new GameTimer();
     entities = new List<GameEntity>();
+    sounds = new List<GameSound>();
     rect = renderer.rect;
 
     input.game = this;
@@ -68,7 +67,7 @@ class Game {
   
   void addSound(GameSound sound, String file, String id, num volume, bool looping) {
     sounds.add(sound);
-    sound.play(file, id, volume, looping);
+    new GameSound(file, id, volume, looping);
   }
   
   void removeSound(String id) {
