@@ -58,6 +58,7 @@ class HtmlGameSound extends GameSound {
   }
   
   void remove() {
+    audioCopy.volume = 0;
     audioCopy.remove();
   }
 }
