@@ -2,6 +2,9 @@ part of dgame_html;
 
 class HtmlGameSound extends GameSound {
   HtmlGameSound() : super(super.Sound, super.Id, super.Volume, super.Looping) {}
+  
+  AudioElement audioCopy;
+  
   void play(String sound, String id, [double volume = 1.0, bool looping = false]) {
     if (!enabled)
       return;
@@ -12,8 +15,6 @@ class HtmlGameSound extends GameSound {
     AudioElement sourceAudio = query("#sound_$sound");
     if (sourceAudio == null)
       sourceAudio = query("#$sound");
-    
-    AudioElement audioCopy;
     
     if (sourceAudio == null) {
       sourceAudio = new AudioElement();
@@ -54,5 +55,9 @@ class HtmlGameSound extends GameSound {
       
     audioCopy.play();
     audioCopy.classes.add("sound-clone");
+  }
+  
+  void remove() {
+    audioCopy.remove();
   }
 }

@@ -22,4 +22,6 @@ class GameSound {
   }
   
   void play(String sound, String id, [double volume = 1.0, bool looping = false]) {}
+  
+  void remove() {}
 }
