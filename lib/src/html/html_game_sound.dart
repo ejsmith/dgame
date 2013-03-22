@@ -52,14 +52,17 @@ class HtmlGameSound extends GameSound {
     
     if (looping)
       audioCopy.loop = true;
+
     
     audioCopy.play();
     audioCopy.classes.add("sound-clone");
   }
   
   void remove() {
+    audioCopy.currentTime = 999;
     audioCopy.pause();
     audioCopy.volume = 0;
     audioCopy.remove();
+    audioCopy.loop = false;
   }
 }
