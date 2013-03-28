@@ -95,7 +95,7 @@ class Game {
   }
   
   GameEntity getEntity(String id) {
-    return entities.firstMatching((e) => e.id == id, orElse: () => null);
+    return entities.firstWhere((e) => e.id == id, orElse: () => null);
   }
   
   void update() {

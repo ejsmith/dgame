@@ -1,7 +1,7 @@
 part of dgame_html;
 
 class HtmlGameSound extends GameSound {
-  HtmlGameSound() : super(super.Sound, super.Id, super.Volume, super.Looping) {}
+  HtmlGameSound(String sound, String id, [double volume = 1.0, bool looping = false]) : super(sound, id, volume, looping) {}
   
   AudioElement audioCopy;
   

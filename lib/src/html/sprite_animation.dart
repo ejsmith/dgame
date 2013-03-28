@@ -28,11 +28,7 @@ class SpriteAnimation {
     num locY = y - (frameHeight / 2) * scaleBy;
     
     ctx.drawImage(spriteSheet,
-                  index * frameWidth, 0,
-                  frameWidth, frameHeight,
-                  locX, locY,
-                  frameWidth * scaleBy,
-                  frameHeight * scaleBy);
+                  index * frameWidth, 0);
   }
   
   bool isDone() {
