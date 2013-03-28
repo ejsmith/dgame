@@ -1,11 +1,11 @@
 part of dgame_html;
 
 class HtmlGameSound extends GameSound {
-  HtmlGameSound(String sound, String id, [double volume = 1.0, bool looping = false]) : super(sound, id, volume, looping) {}
+  HtmlGameSound(String sound, [double volume = 1.0, bool looping = false]) : super(sound, volume, looping) {}
   
   AudioElement audioCopy;
   
-  void play(String sound, String id, [double volume = 1.0, bool looping = false]) {
+  void play(String sound, [double volume = 1.0, bool looping = false]) {
     if (!enabled)
       return;
     
