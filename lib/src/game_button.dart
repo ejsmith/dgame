@@ -33,7 +33,7 @@ class GameButton extends GameText {
     
     if (game.input.click != null && box.contains(game.input.click)) {
       opacity = 1.0;
-      new Timer(const Duration(milliseconds: 250), (t) => opacity = 0.5);
+      new Timer(const Duration(milliseconds: 250), () => opacity = 0.5);
       buttonAction();
     }
   }
