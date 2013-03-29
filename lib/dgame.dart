@@ -65,9 +65,9 @@ class Game {
     entities.add(entity);
   }
   
-  void addSound(GameSound sound, String file, String id, num volume, bool looping) {
+  void addSound(GameSound sound, String file, num volume, bool looping) {
     sounds.add(sound);
-    new GameSound(file, id, volume, looping);
+    new GameSound(file, volume, looping);
   }
   
   void removeSound(String id) {
