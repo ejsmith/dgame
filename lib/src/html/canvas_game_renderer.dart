@@ -17,7 +17,7 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
     ctx = canvas.getContext('2d');
     rect = new Rectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
     var clientRect = ctx.canvas.getBoundingClientRect();
-    ownMouse = false;
+//    ownMouse = false;
     
     rect.top = clientRect.top;
     rect.left = clientRect.left;
