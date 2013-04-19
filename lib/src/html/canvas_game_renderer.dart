@@ -14,7 +14,7 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
 //    document.onPointerLockChange.listen(pointerLockChange);
 //    canvas.onClick.listen(clicked);
 //    canvas.onMouseMove.listen(moved);
-    ctx = canvas.getContext('2d');
+    ctx = canvas.context2d;
     rect = new Rectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
     var clientRect = ctx.canvas.getBoundingClientRect();
 //    ownMouse = false;

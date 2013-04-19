@@ -10,7 +10,7 @@ class GameSound {
   String get rootDirectory => _rootDirectory;
   set rootDirectory(String value) {
     if (!value.endsWith("/"))
-      value = value.concat("/");
+      value = value + "/";
     _rootDirectory = value;
   }
   
