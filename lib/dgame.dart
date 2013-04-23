@@ -106,7 +106,7 @@ class Game {
     
     for (int i = entities.length - 1; i >= 0; --i) {
       if (entities[i]._removeFromGame) {
-        entities.removeRange(i, 1);
+        //entities.removeRange(i, 1);
         entities.removeAt(i);
       }
     }
