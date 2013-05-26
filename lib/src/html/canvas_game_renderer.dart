@@ -13,7 +13,7 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
     canvas = query('#$targetId');
     document.onPointerLockChange.listen(pointerLockChange);
     canvas.onClick.listen(clicked);
-    ctx = canvas.getContext('2d');
+    ctx = canvas.context2d;
     rect = new Rectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
     var clientRect = ctx.canvas.getBoundingClientRect();
     ownMouse = false;

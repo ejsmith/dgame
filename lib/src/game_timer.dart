@@ -7,8 +7,10 @@ class GameTimer {
   num fps = 0;
   num fpsSampleRate = 60;
   bool timeDecrease = false;
+  bool paused = false;
   
   num tick() {
+    if (paused != true) {
     num wallCurrent = new DateTime.now().millisecondsSinceEpoch;
     num wallDelta = (wallCurrent - wallLastTimestamp) / 1000;
     wallLastTimestamp = wallCurrent;
@@ -23,5 +25,6 @@ class GameTimer {
       gameTime -= gameDelta;
     
     return gameDelta;
+    }
   }
 }
