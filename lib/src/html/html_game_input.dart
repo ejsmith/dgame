@@ -2,19 +2,17 @@ part of dgame_html;
 
 class HtmlGameInput extends GameInput {
   void start() {
-    print('Starting input');
-    
     Vector getXandY(e) {
       num x =  e.clientX - game.rect.x - game.rect.halfWidth;
       num y = e.clientY - game.rect.y - game.rect.halfHeight;
       return new Vector(x, y);
     }
     
-    document.onClick.listen((e) {
+    document.onClick.listen((MouseEvent e) {
       click = getXandY(e);
     });
     
-    document.onMouseMove.listen((e) {
+    document.onMouseMove.listen((MouseEvent e) {
       mouse = getXandY(e);
     });
     
@@ -24,23 +22,25 @@ class HtmlGameInput extends GameInput {
       return false;
     });
     
-    document.onTouchStart.listen((e) {
+    document.onTouchStart.listen((TouchEvent e) {
       e.preventDefault();
       return false;
     });
     
     document.onKeyDown.listen((KeyboardEvent e) {
-      keyCode = e.keyCode;
+      keyDownEventStream.signal(new GameKeyboardEvent(e.keyCode, e.altKey, e.ctrlKey, e.shiftKey));
     });
     
-    document.onMouseDown.listen((e) {
+    document.onKeyUp.listen((KeyboardEvent e) {
+      keyUpEventStream.signal(new GameKeyboardEvent(e.keyCode, e.altKey, e.ctrlKey, e.shiftKey));
+    });
+    
+    document.onMouseDown.listen((MouseEvent e) {
       mouseDown = true;
     });
     
-    document.onMouseUp.listen((e) {
+    document.onMouseUp.listen((MouseEvent e) {
       mouseDown = false;     
     });
-    
-    print('Input started');
   }
 }

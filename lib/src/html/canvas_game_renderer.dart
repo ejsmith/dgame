@@ -6,18 +6,17 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
   GameEntityRenderer defaultRenderer;
   AssetManager assetManager;
   TextRenderer textRenderer;
-//  bool ownMouse;
+  bool ownMouse;
   CanvasElement canvas;
   
   CanvasGameRenderer(String this.targetId) {
     canvas = query('#$targetId');
-//    document.onPointerLockChange.listen(pointerLockChange);
-//    canvas.onClick.listen(clicked);
-//    canvas.onMouseMove.listen(moved);
+    document.onPointerLockChange.listen(pointerLockChange);
+    canvas.onClick.listen(clicked);
     ctx = canvas.getContext('2d');
     rect = new Rectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
     var clientRect = ctx.canvas.getBoundingClientRect();
-//    ownMouse = false;
+    ownMouse = false;
     
     rect.top = clientRect.top;
     rect.left = clientRect.left;
@@ -67,13 +66,14 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
     ctx.fillText("FPS: ${game.timer.fps.toStringAsFixed(1)}", (rect.halfWidth - 120), -(rect.halfHeight - 30));
   }
   
-//  void clicked(Event event) {
-//    canvas.requestPointerLock();
-//  }
-//  
-//  bool get _pointerLocked => canvas == document.pointerLockElement;
-//  
-//  void pointerLockChange(Event event) {
-//    ownMouse = _pointerLocked;
-//  }
+  void clicked(Event event) {
+    //canvas.requestFullscreen();
+    //canvas.requestPointerLock();
+  }
+  
+  bool get _pointerLocked => canvas == document.pointerLockElement;
+  
+  void pointerLockChange(Event event) {
+    ownMouse = _pointerLocked;
+  }
 }

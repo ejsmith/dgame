@@ -1,6 +1,7 @@
 library dgame;
 import "dart:math" as Math;
 import "dart:async";
+import "package:event_stream/event_stream.dart";
 
 part "src/game_timer.dart";
 part "src/game_entity.dart";
@@ -104,10 +105,7 @@ class Game {
     for (GameEntity entity in entities.where((e) => !e._removeFromGame).toList())
       entity.update();
     
-    for (int i = entities.length - 1; i >= 0; --i) {
-      if (entities[i]._removeFromGame) {
-        entities.removeRange(i, 1);
-      }
-    }
+    for (GameEntity entity in entities.where((e) => e._removeFromGame).toList())
+      entities.remove(entity);
   }
 }
