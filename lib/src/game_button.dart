@@ -19,7 +19,7 @@ class GameButton extends GameText {
 
     if (game.input.click != null) {
 //      print("x: ${game.input.click.x} y: ${game.input.click.y}");
-      print(box.contains(game.input.click));
+      //print(box.contains(game.input.click));
     }
 
     if (game.input.mouse != null && box.contains(game.input.mouse)) {
