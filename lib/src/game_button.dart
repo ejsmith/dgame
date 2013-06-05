@@ -18,7 +18,7 @@ class GameButton extends GameText {
       return;
 
     if (game.input.click != null) {
-      print("x: ${game.input.click.x} y: ${game.input.click.y}");
+//      print("x: ${game.input.click.x} y: ${game.input.click.y}");
       print(box.contains(game.input.click));
     }
 
