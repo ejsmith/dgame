@@ -12,9 +12,9 @@ class HtmlGameSound extends GameSound {
     if (Game.debugMode)
       print("Playing: $sound");
 
-    AudioElement sourceAudio = query("#sound_$sound");
+    AudioElement sourceAudio = querySelector("#sound_$sound");
     if (sourceAudio == null)
-      sourceAudio = query("#$sound");
+      sourceAudio = querySelector("#$sound");
 
     if (sourceAudio == null) {
       sourceAudio = new AudioElement();

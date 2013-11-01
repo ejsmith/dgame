@@ -2,10 +2,10 @@ part of dgame_html;
 
 class HtmlGameInput extends GameInput {
   void start() {
-    Vector getXandY(e) {
-      num x =  e.clientX - game.rect.x - game.rect.halfWidth;
-      num y = e.clientY - game.rect.y - game.rect.halfHeight;
-      return new Vector(x, y);
+    Point getXandY(e) {
+      num x =  e.clientX - game.rect.left - (game.rect.width / 2);
+      num y = e.clientY - game.rect.height - (game.rect.height / 2);
+      return new Point(x, y);
     }
     
     document.onClick.listen((MouseEvent e) {

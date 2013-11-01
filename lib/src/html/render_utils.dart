@@ -11,13 +11,13 @@ class RenderUtils {
     var slope = dy;
     if (dx != 0)
       slope = dy / dx;
-    var distRemaining = Math.sqrt(dx * dx + dy * dy);
+    var distRemaining = sqrt(dx * dx + dy * dy);
     var dashIndex = 0, drawLine = true;
     while (distRemaining>=0.1 && dashIndex < 10000){
       var dashLength = da[dashIndex++ % dashCount];
       if (dashLength > distRemaining) dashLength = distRemaining;
       var xStep;
-      xStep = Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+      xStep = sqrt(dashLength * dashLength / (1 + slope * slope));
       x += xStep;
       y += slope * xStep;
       if (drawLine)

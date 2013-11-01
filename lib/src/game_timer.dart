@@ -17,7 +17,7 @@ class GameTimer {
     num currentFps = 1 / wallDelta;
     fps += (currentFps - fps) / fpsSampleRate;
     
-    num gameDelta = Math.min(wallDelta, MAX_STEP);
+    num gameDelta = min(wallDelta, MAX_STEP);
     
     if (!timeDecrease)
       gameTime += gameDelta;

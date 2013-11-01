@@ -14,7 +14,7 @@ class GameText extends GameEntity {
   
   void updateBox() {
     if (box == null)
-      box = new Rectangle(0, 0, 0, 0);
+      box = new MutableRectangle<double>(0.0, 0.0, 0.0, 0.0);
     
     _height = size;
     
@@ -23,8 +23,8 @@ class GameText extends GameEntity {
     } else {
       box.left = x;
       box.top = y;
-      box.right = box.left + width;
-      box.bottom = box.top + height;
+      box.width = width;
+      box.height = height;
     }
   }
 }

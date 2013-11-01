@@ -22,7 +22,7 @@ class GameButton extends GameText {
       //print(box.contains(game.input.click));
     }
 
-    if (game.input.mouse != null && box.contains(game.input.mouse)) {
+    if (game.input.mouse != null && box.containsPoint(game.input.mouse)) {
       isHighlighted = true;
       opacity = 1.0;
     }
@@ -31,7 +31,7 @@ class GameButton extends GameText {
       opacity = 0.7;
     }
 
-    if (game.input.click != null && box.contains(game.input.click)) {
+    if (game.input.click != null && box.containsPoint(game.input.click)) {
       opacity = 1.0;
       new Timer(const Duration(milliseconds: 250), () => opacity = 0.5);
       buttonAction();

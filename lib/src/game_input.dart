@@ -13,8 +13,8 @@ class GameInput {
     onKeyUp.listen((e) => _downKeys.remove(e.keyCode));
   }
   
-  Vector click;
-  Vector mouse;
+  Point click;
+  Point mouse;
   bool mouseDown = false;
   Game game;
   bool isKeyDown(int keyCode) => _downKeys.contains(keyCode);

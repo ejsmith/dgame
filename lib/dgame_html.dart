@@ -2,7 +2,7 @@ library dgame_html;
 
 import "dgame.dart";
 import "dart:html";
-import "dart:math" as Math;
+import "dart:math";
 
 part "src/html/asset_manager.dart";
 part "src/html/canvas_game_renderer.dart";

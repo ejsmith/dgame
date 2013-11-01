@@ -1,12 +1,10 @@
 library dgame;
-import "dart:math" as Math;
+import "dart:math";
 import "dart:async";
 import "package:event_stream/event_stream.dart";
 
 part "src/game_timer.dart";
 part "src/game_entity.dart";
-part "src/vector.dart";
-part "src/rectangle.dart";
 part "src/math.dart";
 part "src/momentum.dart";
 part "src/game_sound.dart";
@@ -22,7 +20,7 @@ class Game {
   List<GameSound> sounds;
   GameTimer timer;
   num clockTick;
-  Rectangle rect;
+  MutableRectangle rect;
   static bool debugMode = false;
   GameInput input;
   GameRenderer renderer;
@@ -32,7 +30,7 @@ class Game {
   String bgStyle = "rgba(0, 0, 0, .85)";
   bool showOutlines = false;
   
-  Game(Rectangle this.rect) {
+  Game(MutableRectangle this.rect) {
     timer = new GameTimer();
     input = new GameInput();
     renderer = new GameRenderer();

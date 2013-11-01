@@ -19,7 +19,7 @@ class DefaultCanvasEntityRenderer<E extends GameEntity> implements GameEntityRen
     if (gr.game.showOutlines) {
       gr.ctx.beginPath();
       gr.ctx.strokeStyle = "green";
-      gr.ctx.arc(e.x, e.y, e.radius, 0, Math.PI * 2, false);
+      gr.ctx.arc(e.x, e.y, e.radius, 0, PI * 2, false);
       gr.ctx.stroke();
       gr.ctx.closePath();
     }
@@ -33,13 +33,13 @@ class DefaultCanvasEntityRenderer<E extends GameEntity> implements GameEntityRen
   
   CanvasElement rotateAndCache(image, angle) {
     CanvasElement offscreenCanvas = new Element.tag("canvas");
-    var size = Math.max(image.width, image.height);
+    var size = max(image.width, image.height);
     offscreenCanvas.width = size;
     offscreenCanvas.height = size;
     CanvasRenderingContext2D offscreenCtx = offscreenCanvas.getContext('2d');
     offscreenCtx.save();
     offscreenCtx.translate(size / 2, size / 2);
-    offscreenCtx.rotate(angle + Math.PI / 2);
+    offscreenCtx.rotate(angle + PI / 2);
     offscreenCtx.translate(0,0);
     offscreenCtx.drawImage(image, -(image.width / 2), -(image.height / 2));
     offscreenCtx.restore();

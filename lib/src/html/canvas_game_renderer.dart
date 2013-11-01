@@ -10,18 +10,18 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
   CanvasElement canvas;
   
   CanvasGameRenderer(String this.targetId) {
-    canvas = query('#$targetId');
+    canvas = querySelector('#$targetId');
     document.onPointerLockChange.listen(pointerLockChange);
     canvas.onClick.listen(clicked);
-    ctx = canvas.context2d;
-    rect = new Rectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx = canvas.context2D;
+    rect = new MutableRectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
     var clientRect = ctx.canvas.getBoundingClientRect();
     ownMouse = false;
     
     rect.top = clientRect.top;
     rect.left = clientRect.left;
-    rect.right = clientRect.right;
-    rect.bottom = clientRect.bottom;
+    rect.width = clientRect.width;
+    rect.height = clientRect.height;
     
     defaultRenderer = new DefaultCanvasEntityRenderer(this);
     textRenderer = new TextRenderer(this);
@@ -63,7 +63,7 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
   void drawDebugInfo() {
     ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
     ctx.font = "16px Verdana";
-    ctx.fillText("FPS: ${game.timer.fps.toStringAsFixed(1)}", (rect.halfWidth - 120), -(rect.halfHeight - 30));
+    ctx.fillText("FPS: ${game.timer.fps.toStringAsFixed(1)}", ((rect.width / 2) - 120), -((rect.height / 2) - 30));
   }
   
   void clicked(Event event) {

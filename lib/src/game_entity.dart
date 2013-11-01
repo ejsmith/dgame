@@ -10,8 +10,8 @@ class GameEntity<G extends Game> {
   bool soundReady = false;
   String id;
   String groupId;
-  Rectangle box;
-  Rectangle previousBox;
+  MutableRectangle box;
+  MutableRectangle previousBox;
   bool _removeFromGame = false;
   num radius;
   Momentum momentum;
@@ -39,9 +39,13 @@ class GameEntity<G extends Game> {
   
   void update() {
     if (previousBox == null)
-      previousBox = new Rectangle.clone(box);
-    else
-      previousBox.updateFrom(box);
+      previousBox = new MutableRectangle.fromPoints(box.topLeft, box.bottomRight);
+    else {
+      previousBox.top = box.top;
+      previousBox.left = box.left;
+      previousBox.width = box.width;
+      previousBox.height = box.height;
+    }
     
     // if not enabled, do not apply momentum.
     if (!enabled)
@@ -83,8 +87,8 @@ class GameEntity<G extends Game> {
     
     box.left = x - (width / 2);
     box.top = y - (height / 2);
-    box.right = box.left + width;
-    box.bottom = box.top + height;
+    box.width = width;
+    box.height = height;
   }
   
   void removeFromGame() {
@@ -92,8 +96,8 @@ class GameEntity<G extends Game> {
   }
   
   bool outsideScreen() {
-    return (x > game.rect.halfWidth || x < -(game.rect.halfWidth) ||
-        y > game.rect.halfHeight || y < -(game.rect.halfHeight));
+    return (x > (game.rect.width / 2) || x < -(game.rect.width / 2) ||
+        y > (game.rect.height / 2) || y < -(game.rect.height / 2));
   }
   
   bool collidesWith(GameEntity entity) {
@@ -102,6 +106,6 @@ class GameEntity<G extends Game> {
     if (!entity.enabled)
       return false;
         
-    return entity.box.intersectsWith(box);
+    return entity.box.intersects(box);
   }
 }
