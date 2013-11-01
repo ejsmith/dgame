@@ -20,7 +20,7 @@ class Game {
   List<GameSound> sounds;
   GameTimer timer;
   num clockTick;
-  MutableRectangle rect;
+  DRectangle rect;
   static bool debugMode = false;
   GameInput input;
   GameRenderer renderer;

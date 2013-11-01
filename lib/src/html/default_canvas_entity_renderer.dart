@@ -9,25 +9,25 @@ class DefaultCanvasEntityRenderer<E extends GameEntity> implements GameEntityRen
     if (e.color != null) {
       if (e.fill) {
         gr.ctx.fillStyle = "rgba(${e.color}, ${e.opacity})";
-        gr.ctx.fillRect(e.box.left, e.box.top, e.box.width, e.box.height);
+        gr.ctx.fillRect(e.left, e.top, e.width, e.height);
       } else {
         gr.ctx.strokeStyle = "rgba(${e.color}, ${e.opacity})";
-        gr.ctx.strokeRect(e.box.left, e.box.top, e.box.width, e.box.height);
+        gr.ctx.strokeRect(e.left, e.top, e.width, e.height);
       }
     }
     
     if (gr.game.showOutlines) {
       gr.ctx.beginPath();
       gr.ctx.strokeStyle = "green";
-      gr.ctx.arc(e.x, e.y, e.radius, 0, PI * 2, false);
+      gr.ctx.arc(e.centerX, e.centerY, e.radius, 0, PI * 2, false);
       gr.ctx.stroke();
       gr.ctx.closePath();
     }
   }
   
   void drawSpriteCentered(E e) {
-    num cx = e.x - e.sprite.width / 2;
-    num cy = e.y - e.sprite.height / 2;
+    num cx = e.centerX - e.sprite.width / 2;
+    num cy = e.centerY - e.sprite.height / 2;
     gr.ctx.drawImage(e.sprite, cx, cy);
   }
   

@@ -3,8 +3,8 @@ part of dgame_html;
 class HtmlGameInput extends GameInput {
   void start() {
     Point getXandY(e) {
-      num x =  e.clientX - game.rect.left - (game.rect.width / 2);
-      num y = e.clientY - game.rect.height - (game.rect.height / 2);
+      num x =  e.clientX - game.rect.left - game.rect.halfWidth;
+      num y = e.clientY - game.rect.height - game.rect.halfHeight;
       return new Point(x, y);
     }
     

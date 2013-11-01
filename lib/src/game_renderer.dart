@@ -2,7 +2,7 @@ part of dgame;
 
 class GameRenderer<G extends Game> {
   G _game;
-  MutableRectangle rect;
+  DRectangle rect;
   
   GameRenderer();
   

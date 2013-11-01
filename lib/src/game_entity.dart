@@ -1,21 +1,17 @@
 part of dgame;
 
-class GameEntity<G extends Game> {
+class GameEntity<G extends Game> extends DRectangle {
   G game;
-  num _x = 0;
-  num _y = 0;
-  num _width = 1;
-  num _height = 1;
   bool isHighlighted = false;
   bool soundReady = false;
   String id;
   String groupId;
-  MutableRectangle box;
-  MutableRectangle previousBox;
+  DRectangle previousBox;
   bool _removeFromGame = false;
   num radius;
   Momentum momentum;
   bool enabled = true;
+  bool centered = true;
   
   // UI attributes
   num opacity = 1;
@@ -27,68 +23,35 @@ class GameEntity<G extends Game> {
     momentum = new Momentum();
   }
   
-  GameEntity.withPosition(G this.game, num x, num y, [num width = 1, num height = 1, String this.id, String this.groupId]) {
+  GameEntity.withPosition(G this.game, num x, num y, [num width = 1, num height = 1, String this.id, String this.groupId, bool centered = true]) {
     momentum = new Momentum();
-    this.x = x;
-    this.y = y;
+    this.centered = centered;
     this.width = width;
     this.height = height;
+    if (this.centered) {
+      this.centerX = x;
+      this.centerY = y;
+    } else {
+      this.left = x;
+      this.top = y;
+    }
     if (this.id == null || this.id.length == 0)
       this.id = this.hashCode.toString();
   }
   
   void update() {
     if (previousBox == null)
-      previousBox = new MutableRectangle.fromPoints(box.topLeft, box.bottomRight);
-    else {
-      previousBox.top = box.top;
-      previousBox.left = box.left;
-      previousBox.width = box.width;
-      previousBox.height = box.height;
-    }
+      previousBox = new DRectangle.clone(this);
+    else
+      previousBox.updateFrom(this);
     
     // if not enabled, do not apply momentum.
     if (!enabled)
       return;
     
     momentum.update(game.clockTick);
-    x += momentum.xVel * game.clockTick;
-    y += momentum.yVel * game.clockTick;
-    updateBox();
-  }
-  
-  num get x => _x;
-  void set x(num value) {
-    _x = value;
-    updateBox();
-  }
-  
-  num get y => _y;
-  void set y(num value) {
-    _y = value;
-    updateBox();
-  }
-  
-  num get width => _width;
-  void set width(num value) {
-    _width = value;
-    updateBox();
-  }
-  
-  num get height => _height;
-  void set height(num value) {
-    _height = value;
-    updateBox();
-  }
-  
-  void updateBox() {
-    if (box == null)
-      box = new Rectangle(0, 0, 0, 0);
-    
-    box.left = x - (width / 2);
-    box.top = y - (height / 2);
-    box.width = width;
-    box.height = height;
+    left += momentum.xVel * game.clockTick;
+    top += momentum.yVel * game.clockTick;
   }
   
   void removeFromGame() {
@@ -96,8 +59,7 @@ class GameEntity<G extends Game> {
   }
   
   bool outsideScreen() {
-    return (x > (game.rect.width / 2) || x < -(game.rect.width / 2) ||
-        y > (game.rect.height / 2) || y < -(game.rect.height / 2));
+    return !game.rect.containsRectangle(this);
   }
   
   bool collidesWith(GameEntity entity) {
@@ -106,6 +68,6 @@ class GameEntity<G extends Game> {
     if (!entity.enabled)
       return false;
         
-    return entity.box.intersects(box);
+    return entity.intersects(this);
   }
 }

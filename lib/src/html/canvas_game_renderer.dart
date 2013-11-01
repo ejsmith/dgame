@@ -14,7 +14,7 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
     document.onPointerLockChange.listen(pointerLockChange);
     canvas.onClick.listen(clicked);
     ctx = canvas.context2D;
-    rect = new MutableRectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
+    rect = new DRectangle(0, 0, ctx.canvas.width, ctx.canvas.height);
     var clientRect = ctx.canvas.getBoundingClientRect();
     ownMouse = false;
     
@@ -63,7 +63,7 @@ class CanvasGameRenderer<G extends Game> extends GameRenderer<G> {
   void drawDebugInfo() {
     ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
     ctx.font = "16px Verdana";
-    ctx.fillText("FPS: ${game.timer.fps.toStringAsFixed(1)}", ((rect.width / 2) - 120), -((rect.height / 2) - 30));
+    ctx.fillText("FPS: ${game.timer.fps.toStringAsFixed(1)}", (rect.halfWidth - 120), -(rect.halfHeight - 30));
   }
   
   void clicked(Event event) {
